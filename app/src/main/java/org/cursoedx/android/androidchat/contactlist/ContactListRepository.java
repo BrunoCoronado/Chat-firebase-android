@@ -5,7 +5,7 @@ package org.cursoedx.android.androidchat.contactlist;
  */
 public interface ContactListRepository {
     void signOff();
-    void getCurrentUserEmail();
+    String getCurrentUserEmail();
     void removeContact(String email);
     void subscribeToContactListEvents();
     void unsubscribeToContactListEvents();
