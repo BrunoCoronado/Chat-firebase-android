@@ -1,4 +1,4 @@
-package org.cursoedx.android.androidchat;
+package org.cursoedx.android.androidchat.domain;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
