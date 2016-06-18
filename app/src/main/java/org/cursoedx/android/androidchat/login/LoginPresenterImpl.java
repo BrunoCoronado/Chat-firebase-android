@@ -5,6 +5,7 @@ import android.util.Log;
 import org.cursoedx.android.androidchat.lib.EventBus;
 import org.cursoedx.android.androidchat.lib.GreenRobotEventBus;
 import org.cursoedx.android.androidchat.login.events.LoginEvent;
+import org.cursoedx.android.androidchat.login.ui.LoginView;
 import org.greenrobot.eventbus.Subscribe;
 
 /**

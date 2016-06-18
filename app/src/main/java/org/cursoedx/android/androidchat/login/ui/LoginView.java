@@ -1,4 +1,4 @@
-package org.cursoedx.android.androidchat.login;
+package org.cursoedx.android.androidchat.login.ui;
 
 /**
  * Created by TrexT on 17/06/2016.
