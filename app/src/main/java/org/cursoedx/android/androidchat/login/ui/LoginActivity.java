@@ -11,10 +11,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import org.cursoedx.android.androidchat.R;
-import org.cursoedx.android.androidchat.contactlist.ContactListActivity;
+import org.cursoedx.android.androidchat.contactlist.ui.ContactListActivity;
 import org.cursoedx.android.androidchat.login.LoginPresenter;
 import org.cursoedx.android.androidchat.login.LoginPresenterImpl;
-import org.cursoedx.android.androidchat.login.ui.LoginView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
