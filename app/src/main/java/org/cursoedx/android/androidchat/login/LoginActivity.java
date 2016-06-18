@@ -16,23 +16,17 @@ import android.widget.RelativeLayout;
 import org.cursoedx.android.androidchat.R;
 import org.cursoedx.android.androidchat.contactlist.ContactListActivity;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity implements LoginView{
-    @BindView(R.id.editTxtEmail)
-    EditText inputEmail;
-    @BindView(R.id.editTxtPassword)
-    EditText inputPassword;
-    @BindView(R.id.btnSignin)
-    Button btnSignIn;
-    @BindView(R.id.btnSignup)
-    Button btnSignUp;
-    @BindView(R.id.progressBar)
-    ProgressBar progressBar;
-    @BindView(R.id.layoutMainConteiner)
-    RelativeLayout conteiner;
+    @Bind(R.id.btnSignin)           Button btnSignIn;
+    @Bind(R.id.btnSignup)           Button btnSignUp;
+    @Bind(R.id.editTxtEmail)        EditText inputEmail;
+    @Bind(R.id.editTxtPassword)     EditText inputPassword;
+    @Bind(R.id.progressBar)         ProgressBar progressBar;
+    @Bind(R.id.layoutMainConteiner) RelativeLayout container;
 
     private LoginPresenter loginPresenter;
 
@@ -43,7 +37,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         ButterKnife.bind(this);
 
         loginPresenter = new LoginPresenterImpl(this);
+        loginPresenter.onCreate();
         loginPresenter.checkForAuthenticatedUser();
+    }
+
+    @Override
+    protected void onDestroy() {
+        loginPresenter.onDestroy();
+        super.onDestroy();
     }
 
     @Override
@@ -92,7 +93,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
     @Override
     public void newUserSuccess() {
-        Snackbar.make(conteiner, R.string.login_notice_message_signup, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(container, R.string.login_notice_message_signup, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -103,9 +104,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     }
 
     private void setInputs(boolean enable){
-        inputEmail.setEnabled(enable);
-        inputPassword.setEnabled(enable);
         btnSignIn.setEnabled(enable);
         btnSignUp.setEnabled(enable);
+        inputEmail.setEnabled(enable);
+        inputPassword.setEnabled(enable);
     }
 }
