@@ -25,26 +25,26 @@ public class ContactListPresenterImpl implements ContactListPresenter {
 
     @Override
     public void onCreate() {
+        evenbus.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        evenbus.unregister(this);
+        listInteractor.destroyListener();
+        view = null;
+    }
+
+    @Override
+    public void onPause() {
         sessionInteractor.changeConnectionStatus(User.OFFLINE);
         listInteractor.unsubscribe();
     }
 
     @Override
-    public void onDestroy() {
+    public void onResume() {
         sessionInteractor.changeConnectionStatus(User.ONLINE);
         listInteractor.subscribe();
-    }
-
-    @Override
-    public void onPause() {
-        evenbus.register(this);
-    }
-
-    @Override
-    public void onResume() {
-        evenbus.unregister(this);
-        listInteractor.destroyListener();
-        view = null;
     }
 
     @Override

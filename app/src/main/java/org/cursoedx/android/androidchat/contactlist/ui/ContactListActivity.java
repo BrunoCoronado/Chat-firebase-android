@@ -9,11 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Toast;
 
 import org.cursoedx.android.androidchat.R;
+import org.cursoedx.android.androidchat.addcontact.ui.AddContactFragment;
+import org.cursoedx.android.androidchat.chat.ui.ChatActivity;
 import org.cursoedx.android.androidchat.contactlist.ContactListPresenter;
 import org.cursoedx.android.androidchat.contactlist.ContactListPresenterImpl;
 import org.cursoedx.android.androidchat.contactlist.ui.adapters.ContactListAdapter;
@@ -46,11 +45,13 @@ public class ContactListActivity extends AppCompatActivity implements ContactLis
         setContentView(R.layout.activity_contact_list);
         ButterKnife.bind(this);
 
-        setupAdapter();
-        setupRecyclerView();
         presenter = new ContactListPresenterImpl(this);
         presenter.onCreate();
+
         setupToolbar();
+
+        setupAdapter();
+        setupRecyclerView();
     }
 
     @Override
@@ -108,7 +109,7 @@ public class ContactListActivity extends AppCompatActivity implements ContactLis
 
     @OnClick(R.id.fab)
     public void addContact(){
-
+        new AddContactFragment().show(getSupportFragmentManager(), getString(R.string.addcontact_message_title));
     }
 
     @Override
@@ -128,7 +129,10 @@ public class ContactListActivity extends AppCompatActivity implements ContactLis
 
     @Override
     public void onItemClick(User user) {
-        Toast.makeText(this, user.getEmail(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra(ChatActivity.EMAIL_KEY, user.getEmail());
+        intent.putExtra(ChatActivity.ONLINE_KEY, user.isOnline());
+        startActivity(intent);
     }
 
     @Override

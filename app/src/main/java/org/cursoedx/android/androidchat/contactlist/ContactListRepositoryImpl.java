@@ -101,6 +101,6 @@ public class ContactListRepositoryImpl implements ContactListRepository {
 
     @Override
     public void changeConnectionStatus(boolean online) {
-
+        helper.changeUserConnectionStatus(online);
     }
 }
